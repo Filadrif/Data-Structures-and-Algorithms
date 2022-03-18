@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include "odd_counter.h"
+#include "my_array.h"
+#include "consts.h"
+
+int main(void)
+{
+    setbuf(stdout, NULL);
+
+    int exit_code = OK;
+    int array[ARRAY_MAX_LENGTH], length;
+
+    exit_code = input_array(array, &length);
+    if (exit_code == ARRAY_LENGTH_ERROR)
+    {
+        printf("Wrong array length");
+    }
+    else if (exit_code == INPUT_ERROR)
+    {
+        printf("Error in input");
+    }
+    else
+    {
+        int summ = 0;
+        exit_code = odd_elements_summ(array, length, &summ);
+        if (exit_code == NO_ODD_ERROR)
+        {
+            printf("No odd elements in array");
+        }
+        else
+        {
+            printf("Summary of odd elements of array %d", summ);
+        }  
+    }
+    
+    return exit_code;
+}
